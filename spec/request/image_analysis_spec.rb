@@ -9,8 +9,6 @@ RSpec.describe Api::AnalysesController, type: :request do
           category: :image
         } }
       end
-
-      binding.pry 
       
       it {
         expect(response).to have_http_status 200
