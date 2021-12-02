@@ -7,7 +7,20 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'spec_helper'
 
-ActiveRecord::Migration.maintain_test_schema!
+# ActiveRecord::Migration.maintain_test_schema!
+
+begin
+  ActiveRecord::Migration.maintain_test_schema!
+rescue ActiveRecord::PendingMigrationError => e
+  puts e.to_s.strip
+  exit 1
+end
+
+module ResponseJSON
+  def response_json
+    JSON.parse(response.body)
+  end
+end
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
