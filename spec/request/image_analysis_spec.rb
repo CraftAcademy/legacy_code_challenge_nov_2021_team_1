@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Api::AnalysesController, type: :request do
-  describe 'Image analysiss' do
+  describe 'Image analysis' do
     describe 'SAFE' do
       before do
         post '/api/analyses', params: { analysis: {
@@ -9,6 +9,9 @@ RSpec.describe Api::AnalysesController, type: :request do
           category: :image
         } }
       end
+
+      binding.pry 
+      
       it {
         expect(response).to have_http_status 200
       }
