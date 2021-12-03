@@ -22,6 +22,24 @@ module ResponseJSON
   end
 end
 
+module ResultsJSON
+  def results_json
+    response_json['results']
+  end
+end
+
+module ClassificationJSON
+  def classic_json
+    results_json['classifications']
+  end
+end
+
+module EvaluationJSON
+  def eval_json
+    eval(classic_json)
+  end
+end
+
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
@@ -39,6 +57,9 @@ RSpec.configure do |config|
   
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
   config.include ResponseJSON
+  config.include ResultsJSON
+  config.include EvaluationJSON
+  config.include ClassificationJSON
 end
 
 Shoulda::Matchers.configure do |config|

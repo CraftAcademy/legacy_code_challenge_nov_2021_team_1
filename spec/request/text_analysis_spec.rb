@@ -11,12 +11,21 @@ RSpec.describe Api::AnalysesController, type: :request do
     it 'responds with an text analysis' do
       expect(response.status).to eq 200
     end
+    it 'is expected to return the requested resource' do
+        expect(response_json['resource']).to eq 'This is awesome'
+        
+      end
+    it 'is expected to return the results of the analysis' do
+        expect(eval_json[0]['confidence']).to eq 0.844
+          
+          end
+        end
+      end
 
-    it 'is expected to return requested analysis' do
-      expect(response_json)['analysis']['resource'].to eq 'This is awesome'
-    end
-    it 'is expected to return results' do
-      expect(response_json)['analysis']['results'].to eq {}
-    end
-  end
-end
+        
+        
+            
+       
+        
+
+
