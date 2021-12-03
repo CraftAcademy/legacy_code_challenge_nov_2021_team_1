@@ -19,6 +19,7 @@ RSpec.describe Api::AnalysesController, type: :request do
     end
     it 'is expected to show confidence in the analysis' do
       expect(eval_json[0]['confidence']).to eq 0.844
+      # add logic to check if clean or profanity 
     end
     it 'is expected to show the tag_id' do
       expect(eval_json[0]['tag_id']).to eq 57_725_628
